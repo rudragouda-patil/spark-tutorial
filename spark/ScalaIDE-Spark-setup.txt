@@ -1,0 +1,39 @@
+1. Download scala ide (eclipse plugin) 
+http://scala-ide.org/download/sdk.html
+eg 4.4.1 release i have downloaded for windows 64bit, down respective ide based on your os version
+
+create new maven project
+GroupId org.test,  Artifact Id spark,  and choose simple project
+copy the pom.xml which i have provided to u
+
+you will see eclipse error Project Configuration is not up-to-date
+
+Add scala Nature
+click on main project folder, Under configure sub menu
+
+2. You will see some errors reason being ide uses scala 2.11 where spak-core is compiled on scala 2.10
+Change scala version to 2.10
+right click-->properties-->scala compiler-->Use Project Settings-->under scala Installation choose (Fixed scala Installation 2.10.6)
+
+3. Remove scala library container as it is pulled from spark core depenedencies
+right click-->Build Path-->Configure Build Path-->Libraries-->Scala Library conntainer [2.10.6]-->remove
+
+Change source folder from java to scala
+right click on src/main/java --> Refactor --> Rename (scala)
+right click on src/test/java --> Refactor --> Rename (scala)
+
+4. create new package
+right click src/main/java --> New --> Package --> Name as org.test.spark (same as your groupid, artifactid)
+
+5. correct winutils error
+You can download winutils.exe here: http://public-repo-1.hortonworks.com/hdp-win-alpha/winutils.exe
+Then copy it to your HADOOP_HOME/bin directory.
+set HADOOP_HOME above path: and %HADOOP_HOME%\bin to path variable
+
+6. how to change jre from 1.7 to 1.8
+Install jdk1.8
+java buildpath --> Libraries --> Add Library --> C:\Program Files\java\jr11.8
+GOTO -->JAVA--Compiler---> and change compiler level to `1.7` instead of `1.8`
+
+Right click project -> Properties -> Java Build Path -> select JRE System Library click Edit and select JDK or JRE after then click Java Compiler and select Compiler compliance level to 1.8
+
